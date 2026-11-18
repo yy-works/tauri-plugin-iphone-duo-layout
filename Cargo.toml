@@ -1,0 +1,41 @@
+[package]
+name = "tauri-plugin-iphone-duo-layout"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.90"
+links = "tauri-plugin-iphone-duo-layout"
+license = "MIT"
+repository = "https://github.com/yy-works/tauri-plugin-iphone-duo-layout"
+readme = "README.md"
+keywords = ["tauri", "ios", "foldable", "layout"]
+categories = ["gui"]
+# Root-anchored whitelist. Cargo ignores `exclude` when `include` is set;
+# negative include patterns therefore enforce the exclusions explicitly.
+include = [
+    "/src/**/*.rs",
+    "/build.rs",
+    "/ios/Package.swift",
+    "/ios/Sources/**",
+    "/native/*/Package.swift",
+    "/native/*/Sources/**",
+    "/permissions/**",
+    "/Cargo.toml",
+    "/Cargo.lock",
+    "/README*.md",
+    "/LICENSE",
+    "!/node_modules/**",
+    "!/tests/**",
+    "!/verification/**",
+    "!/target/**",
+    "!/**/*.log",
+    "!/**/*.png",
+    "!/**/*.tgz",
+]
+description = "Tauri v2 plugin for iPhone Duo foldable layout metrics, safe areas and corner radii"
+authors = ["Contributors"]
+
+[dependencies]
+tauri = { version = "2", default-features = false }
+
+[build-dependencies]
+tauri-plugin = { version = "2", features = ["build"] }

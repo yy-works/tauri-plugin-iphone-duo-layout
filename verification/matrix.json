@@ -1,0 +1,66 @@
+[
+  {
+    "input": "466x678",
+    "safe": "32/84/34/0",
+    "nav": 0,
+    "mode": "compact",
+    "split": false,
+    "content": "382x612"
+  },
+  {
+    "input": "466x678",
+    "safe": "32/84/34/0",
+    "nav": 96,
+    "mode": "compact",
+    "split": false,
+    "content": "382x612"
+  },
+  {
+    "input": "466x678",
+    "safe": "56/96/40/12",
+    "nav": 0,
+    "mode": "compact",
+    "split": false,
+    "content": "358x582"
+  },
+  {
+    "input": "466x678",
+    "safe": "56/96/40/12",
+    "nav": 96,
+    "mode": "compact",
+    "split": false,
+    "content": "358x582"
+  },
+  {
+    "input": "951x669",
+    "safe": "32/84/34/0",
+    "nav": 0,
+    "mode": "wide",
+    "split": false,
+    "content": "867x603"
+  },
+  {
+    "input": "951x669",
+    "safe": "32/84/34/0",
+    "nav": 96,
+    "mode": "wide",
+    "split": true,
+    "content": "771x603"
+  },
+  {
+    "input": "951x669",
+    "safe": "56/96/40/12",
+    "nav": 0,
+    "mode": "wide",
+    "split": false,
+    "content": "843x573"
+  },
+  {
+    "input": "951x669",
+    "safe": "56/96/40/12",
+    "nav": 96,
+    "mode": "wide",
+    "split": true,
+    "content": "747x573"
+  }
+]

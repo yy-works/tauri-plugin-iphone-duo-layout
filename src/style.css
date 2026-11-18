@@ -1,0 +1,9 @@
+/* Import before mounting; the loading/retry UI belongs outside this element. */
+[data-layout-root] { visibility: hidden; }
+[data-layout-root][data-layout-ready="true"] { visibility: visible; }
+.layout-content-host {
+  position: fixed;
+  left: var(--layout-left); top: var(--layout-top);
+  width: var(--layout-width); height: var(--layout-height);
+  box-sizing: border-box;
+}

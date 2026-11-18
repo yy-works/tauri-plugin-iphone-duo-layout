@@ -1,0 +1,3 @@
+[default]
+description = "Read local window geometry and subscribe to layout updates; no device control."
+permissions = ["allow-start", "allow-stop", "allow-get-snapshot", "allow-register-listener", "allow-remove-listener"]

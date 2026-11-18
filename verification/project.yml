@@ -1,0 +1,26 @@
+name: LayoutPluginCheck
+options:
+  deploymentTarget:
+    iOS: "17.0"
+packages:
+  LayoutPlugin:
+    path: ../ios
+targets:
+  LayoutPluginCheck:
+    type: library.static
+    platform: iOS
+    sources: [PluginImport.swift]
+    settings:
+      base:
+        IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+        SWIFT_VERSION: "5.0"
+        CODE_SIGNING_ALLOWED: NO
+        GENERATE_INFOPLIST_FILE: YES
+    dependencies:
+      - package: LayoutPlugin
+        product: tauri-plugin-iphone-duo-layout
+schemes:
+  LayoutPluginCheck:
+    build:
+      targets:
+        LayoutPluginCheck: all

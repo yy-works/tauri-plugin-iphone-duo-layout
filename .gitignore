@@ -1,0 +1,16 @@
+node_modules/
+dist/
+target/
+.build/
+.swiftpm/
+.tauri/
+.DS_Store
+verification/build/
+verification/*.xcodeproj/
+verification/duo/*.xcodeproj/
+verification/duo/shots/failed-attempts/
+*.tgz
+.playwright-cli/
+consumer/
+*.log
+verification/duo/shots/

@@ -1,0 +1,56 @@
+{
+  "name": "tauri-plugin-iphone-duo-layout",
+  "version": "0.1.0",
+  "description": "Tauri v2 plugin & frontend layout policy for iPhone Duo foldable geometry, safe areas and corner radii",
+  "license": "MIT",
+  "type": "module",
+  "files": [
+    "dist",
+    "src/style.css",
+    "README.md",
+    "README.zh-CN.md",
+    "LICENSE"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./tauri": {
+      "types": "./dist/tauri.d.ts",
+      "import": "./dist/tauri.js"
+    },
+    "./style.css": "./src/style.css"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "example": "npm run build && node examples/matrix.mjs",
+    "prepack": "npm run build",
+    "demo": "python3 -m http.server 8765 --bind 127.0.0.1"
+  },
+  "peerDependencies": {
+    "@tauri-apps/api": "^2.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@tauri-apps/api": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@tauri-apps/api": "2.12.0",
+    "jsdom": "^26.1.0",
+    "typescript": "~5.9.3"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yy-works/tauri-plugin-iphone-duo-layout.git"
+  },
+  "homepage": "https://github.com/yy-works/tauri-plugin-iphone-duo-layout#readme",
+  "bugs": {
+    "url": "https://github.com/yy-works/tauri-plugin-iphone-duo-layout/issues"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+}

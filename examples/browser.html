@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Layout metrics: browser fallback</title>
+<link rel="stylesheet" href="../src/style.css">
+<style>
+  body { margin: 0; font: 16px system-ui; background: #eef2f6; }
+  #loading { padding: 24px; }
+  #shell { position: fixed; inset: 0; }
+  #content { padding: 24px; background: white; overflow: auto; }
+  #nav { position: fixed; background: #dbeafe; box-sizing: border-box; padding: 16px; }
+  #toast { position: absolute; bottom: 16px; right: 16px; background: #123; color: white; padding: 12px; }
+</style>
+<div id="loading" role="status">Waiting for layout…</div>
+<main id="shell" data-layout-root>
+  <aside id="nav">App-owned navigation</aside>
+  <section id="content" class="layout-content-host">
+    <h1>Layout metrics</h1>
+    <p>Resize the browser. The requested sidebar is 240px; the main region needs 480px.</p>
+    <pre id="metrics"></pre>
+    <div id="toast">Overlay inside the content boundary</div>
+  </section>
+</main>
+<script type="module">
+  import { createLayoutObserver } from '../dist/index.js';
+  const root = document.querySelector('#shell');
+  const observer = createLayoutObserver({ root, onError: e => { document.querySelector('#loading').textContent = String(e); } });
+  observer.subscribe(m => {
+    document.querySelector('#loading').hidden = true;
+    document.querySelector('#metrics').textContent = JSON.stringify(m, null, 2);
+    const nav = document.querySelector('#nav');
+    nav.hidden = !m.isSplit;
+    Object.assign(nav.style, { left: `${m.contentRect.x + m.contentRect.width}px`, top: `${m.pane.y}px`, width: `${m.navigationWidth}px`, height: `${m.pane.height}px` });
+  });
+  await observer.start();
+  window.addEventListener('pagehide', () => { void observer.dispose(); }, { once: true });
+</script>
+</html>
