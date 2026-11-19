@@ -106,9 +106,9 @@ the native reader uses to recognize a Duo.
 
 | Observation | Historical value (pt) | Evidence / remaining check |
 | --- | --- | --- |
-| Closed outer view / capture display | 466×678 / LCD | Native demo JSON and simulator receipt |
+| Closed outer view / capture display | 466×678 / LCD | Historical native demo reading; raw capture data is not included |
 | Half-open / open inner view | 951×669 / LCD-1 | Earlier application-adapter simulator receipt; current package needs both states repeated |
-| Outer maximum corner radius | 59 | Bundled public-API sample: TL/TR/BL/BR = **8/59/8/59**, not four 59pt corners |
+| Outer maximum corner radius | 59 | Historical public-API sample: TL/TR/BL/BR = **8/59/8/59**, not four 59pt corners |
 | Inner corner radius | 55 | Earlier adapter reports scalar public-API reading; simulator profile lists four 55pt corners; current package's inner per-corner sample is pending |
 | Right safe inset / outer safe line | 84 / **466−84=382** | System-reported inset; the width budget ends at x=382 before app navigation |
 | Bottom safe inset | 34 | System value; a demo's optional 8pt bottom reserve is an app policy, not a measured system inset |
@@ -136,6 +136,18 @@ states. This does not establish that every host consumes those insets in the sam
   `fallbackCornerRadius: 0` to disable that guess. It does not choose 55pt from
   an inner-screen model: missing inner data can therefore use 59pt if that
   legacy fallback condition holds.
+
+## Install the Rust plugin
+
+The Rust plugin is available on [crates.io](https://crates.io/crates/tauri-plugin-iphone-duo-layout).
+From your app's Rust project (usually `src-tauri`), run:
+
+```sh
+cargo add tauri-plugin-iphone-duo-layout
+```
+
+The npm package has **not been published**. Clone this repository and use the
+locally built path/tarball dependency below for the frontend bindings.
 
 ## Build and demo
 
@@ -166,7 +178,7 @@ npm pack
 From a frontend app, install in one line:
 
 ```sh
-npm install /absolute/path/to/tauri-plugin-iphone-duo-layout/tauri-plugin-iphone-duo-layout-0.1.0.tgz
+npm install /absolute/path/to/tauri-plugin-iphone-duo-layout/tauri-plugin-iphone-duo-layout-0.1.1.tgz
 ```
 
 With a bundler, import before mounting:
@@ -204,7 +216,7 @@ The frontend-only path needs no Rust dependency. For native iOS measurement add:
 
 ```toml
 [dependencies]
-tauri-plugin-iphone-duo-layout = { path = "/absolute/path/to/tauri-plugin-iphone-duo-layout" }
+tauri-plugin-iphone-duo-layout = "0.1"
 ```
 
 Register `.plugin(tauri_plugin_iphone_duo_layout::init())` in the existing Rust builder,
@@ -242,7 +254,7 @@ npm pack
 mkdir consumer
 cd consumer
 npm init -y
-npm install ../tauri-plugin-iphone-duo-layout-0.1.0.tgz
+npm install ../tauri-plugin-iphone-duo-layout-0.1.1.tgz
 node --input-type=module -e "import {calculateLayout} from 'tauri-plugin-iphone-duo-layout'; console.log(typeof calculateLayout)"
 cd ..
 npm run demo
@@ -271,7 +283,7 @@ frontend/package checks.
   query entirely requires a code fix before claiming a public-API-only build.
 - There is no document-start/reload reinjection guarantee. The scalar native
   WebView clip and lifetime-long native sampling also need app-level acceptance.
-- Registry publication is still pending. MIT licensing and local installability do
+- The Rust crate is published; npm publication is pending. MIT licensing and local installability do
   not by themselves mean this package is ready for public release.
 
 See [integration details](https://github.com/yy-works/tauri-plugin-iphone-duo-layout/blob/main/docs/integration.md).

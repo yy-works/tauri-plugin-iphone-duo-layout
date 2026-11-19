@@ -88,9 +88,9 @@ Tauri 调用 Swift 插件的 `load(webview:)` 后，插件在主线程（iOS 更
 
 | 测量项 | 历史值（pt） | 来源 / 尚需确认 |
 | --- | --- | --- |
-| 闭合外屏视图 / 截图屏名 | 466×678 / LCD | 原生 demo JSON 及模拟器回执 |
+| 闭合外屏视图 / 截图屏名 | 466×678 / LCD | 历史原生 demo 读数；本仓库不附原始截图数据 |
 | 半开 / 展开内屏视图 | 951×669 / LCD-1 | 早期应用桥的模拟器回执；当前包仍需分别复验 |
-| 外屏最大圆角 | 59 | 随仓公开 API 样本：左上/右上/左下/右下为 **8/59/8/59**，不是四角都为59 |
+| 外屏最大圆角 | 59 | 历史公开 API 样本：左上/右上/左下/右下为 **8/59/8/59**，不是四角都为59 |
 | 内屏圆角 | 55 | 早期应用桥回执报告公开 API 标量值；模拟器配置记四角55；当前包内屏逐角样本待补 |
 | 右安全区 / 外屏安全线 | 84 / **466−84=382** | 系统边距；未扣 app 导航时，内容右界为 x=382 |
 | 底安全区 | 34 | 系统值；demo 可选的8pt底边预留是 app 策略，不是系统测量值 |
@@ -109,6 +109,17 @@ Tauri 调用 Swift 插件的 `load(webview:)` 后，插件在主线程（iOS 更
   原生几何层保留系统安全区，不凭空造半径。兼容 JS helper 则先用调用方传入的回退半径，
   否则在右安全区至少64pt时用59pt，其余为0。传 `fallbackCornerRadius: 0` 可禁用这次猜测。
   它不会根据内屏型号自动取55pt：缺少内屏读数时，只要符合上述条件，也可能回退成59pt。
+
+## 安装 Rust 插件
+
+Rust 插件已发布到 [crates.io](https://crates.io/crates/tauri-plugin-iphone-duo-layout)。
+在 app 的 Rust 工程目录（通常为 `src-tauri`）运行：
+
+```sh
+cargo add tauri-plugin-iphone-duo-layout
+```
+
+**npm 包尚未发布。** 前端绑定请先克隆本仓库并完成本地构建，再使用下文的 path/tgz 依赖。
 
 ## 构建与 demo
 
@@ -131,7 +142,7 @@ demo 只含通用界面文案，矩阵使用合成数据，均不能代替物理
 源码目录运行 `npm pack`，会自动构建 `dist/`。在使用方安装：
 
 ```sh
-npm install /absolute/path/to/tauri-plugin-iphone-duo-layout/tauri-plugin-iphone-duo-layout-0.1.0.tgz
+npm install /absolute/path/to/tauri-plugin-iphone-duo-layout/tauri-plugin-iphone-duo-layout-0.1.1.tgz
 ```
 
 使用现有前端构建器，在挂载前导入：
@@ -156,7 +167,7 @@ HTML 需有 `viewport-fit=cover`，根容器加 `data-layout-root`，内容区�
 
 ```toml
 [dependencies]
-tauri-plugin-iphone-duo-layout = { path = "/absolute/path/to/tauri-plugin-iphone-duo-layout" }
+tauri-plugin-iphone-duo-layout = "0.1"
 ```
 
 Rust builder 加 `.plugin(tauri_plugin_iphone_duo_layout::init())`，对应窗口 capability 加
@@ -192,6 +203,6 @@ iOS 编译参考 [历史证据](https://github.com/yy-works/tauri-plugin-iphone-
   `allowPrivateCornerFallback = false` 只禁止选用该值，仍会执行私有查询；
   要声称“完全只用公开接口”，必须先修正这处实现。
 - 不保证页面开始加载前或刷新后立即注入；WebView 的标量裁剪和持续原生采样也需使用方验收。
-- 注册表发布仍待完成。MIT 与本地可安装不代表已经完成公开发布。
+- Rust crate 已发布，npm 发布仍待完成；MIT 与本地可安装不代表完整原生验收已完成。
 
 详见[详细接入](https://github.com/yy-works/tauri-plugin-iphone-duo-layout/blob/main/docs/integration.md)。

@@ -1,6 +1,6 @@
 {
   "name": "tauri-plugin-iphone-duo-layout",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Tauri v2 plugin & frontend layout policy for iPhone Duo foldable geometry, safe areas and corner radii",
   "license": "MIT",
   "type": "module",

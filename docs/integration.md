@@ -280,7 +280,7 @@ export LAYOUT_SIMULATOR_ID=<available-simulator-uuid>
 bash verification/check-native.sh
 ```
 
-See [verification/results.md](verification/results.md) for the actual results and limits.
+See [verification/results.md](../verification/results.md) for the actual results and limits.
 True closed/half/open transitions and real-device reserved-region behavior remain
 unverified; this library does not turn earlier synthetic data into physical evidence.
 

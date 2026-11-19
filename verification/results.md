@@ -6,7 +6,7 @@ physical hinge measurements. No app layout code was changed and nothing was publ
 ## Frontend and policy
 
 `npm test`: TypeScript compilation passed; **11 tests passed, 0 failed**.
-See [frontend-tests.log](frontend-tests.log) and [matrix.json](matrix.json).
+See [matrix.json](matrix.json) for the expected numerical scenarios. Historical build logs are not distributed.
 The matrix invokes the built `calculateLayout` function and asserts exact results.
 Safe-area order below is top/right/bottom/left. Available size is after safe areas
 and the effective app-owned navigation. Navigation disappears in compact mode.
@@ -41,7 +41,6 @@ incremental build (3279ms). Deployment target was explicitly **iOS 17.0**; nativ
 compile commands contained `-target arm64-apple-ios17.0-simulator`.
 No simulator was booted and no application was installed or launched.
 
-- [Final build output](native-check-final.log)
 - Tauri Rust API checked with `cargo check --offline`: passed (Tauri 2.12.5).
 - `cargo fmt --check`: passed. Frontend peer API used in tests: 2.12.0.
 
