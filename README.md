@@ -143,7 +143,7 @@ The Rust plugin is available on [crates.io](https://crates.io/crates/tauri-plugi
 From your app's Rust project (usually `src-tauri`), run:
 
 ```sh
-cargo add tauri-plugin-iphone-duo-layout
+cargo add tauri-plugin-iphone-duo-layout@0.1.1
 ```
 
 The npm package has **not been published**. Clone this repository and use the
@@ -216,7 +216,7 @@ The frontend-only path needs no Rust dependency. For native iOS measurement add:
 
 ```toml
 [dependencies]
-tauri-plugin-iphone-duo-layout = "0.1"
+tauri-plugin-iphone-duo-layout = "0.1.1"
 ```
 
 Register `.plugin(tauri_plugin_iphone_duo_layout::init())` in the existing Rust builder,

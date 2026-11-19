@@ -116,7 +116,7 @@ Rust 插件已发布到 [crates.io](https://crates.io/crates/tauri-plugin-iphone
 在 app 的 Rust 工程目录（通常为 `src-tauri`）运行：
 
 ```sh
-cargo add tauri-plugin-iphone-duo-layout
+cargo add tauri-plugin-iphone-duo-layout@0.1.1
 ```
 
 **npm 包尚未发布。** 前端绑定请先克隆本仓库并完成本地构建，再使用下文的 path/tgz 依赖。
@@ -167,7 +167,7 @@ HTML 需有 `viewport-fit=cover`，根容器加 `data-layout-root`，内容区�
 
 ```toml
 [dependencies]
-tauri-plugin-iphone-duo-layout = "0.1"
+tauri-plugin-iphone-duo-layout = "0.1.1"
 ```
 
 Rust builder 加 `.plugin(tauri_plugin_iphone_duo_layout::init())`，对应窗口 capability 加
